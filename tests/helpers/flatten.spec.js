@@ -35,4 +35,8 @@ describe('flatten helper', () => {
 
     expect(flatten(nonArray)).to.deep.equal(expected);
   });
+
+  it('Should return an empty array for nullable values', () => {
+    expect(flatten(null)).to.deep.equal([]);
+  });
 });
