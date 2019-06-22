@@ -72,4 +72,15 @@ describe('Get helper', () => {
     expect(get(null, 'a.b', defaultValue)).to.equal(defaultValue);
     expect(get(null, ['a', 'b'], defaultValue)).to.equal(defaultValue);
   });
+
+  it('Should works with array', () => {
+    const array = [1, 2, 3];
+    const object = { a: array };
+    const expected = 3;
+    expect(get(object, 'a["2"]')).to.equal(expected);
+    expect(get(object, 'a[2]')).to.equal(expected);
+    expect(get(array, '[2]')).to.equal(expected);
+    expect(get(array, '2')).to.equal(expected);
+    expect(get(array, 2)).to.equal(expected);
+  });
 });
