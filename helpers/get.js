@@ -1,3 +1,5 @@
+const toString = require('./toString');
+
 /** Used to match property names within property paths. */
 const reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
 const reIsPlainProp = /^\w*$/;
@@ -41,18 +43,6 @@ const stringToPath = (string) => {
     result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
   });
   return result;
-};
-
-const toString = (value) => {
-  if (value === null) { return ''; }
-
-  if (typeof value === 'string') {
-    return value;
-  }
-  if (Array.isArray(value)) {
-    return value.map(toString) + '';
-  }
-  return value + '';
 };
 
 /**
