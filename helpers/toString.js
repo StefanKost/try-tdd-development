@@ -9,5 +9,5 @@ module.exports = (value) => {
     return JSON.stringify(value);
   }
 
-  return null;
+  return `${value}`;
 };
