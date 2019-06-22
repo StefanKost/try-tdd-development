@@ -5,5 +5,9 @@ module.exports = (value) => {
     return value;
   }
 
+  if (typeof value === 'object') {
+    return JSON.stringify(value);
+  }
+
   return null;
 };
