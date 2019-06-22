@@ -40,7 +40,7 @@ describe('Get helper', () => {
 
   it('Should handle empty paths', () => {
     expect(get({}, ['', ''])).to.be.an('undefined');
-    expect(get({ '': 3 }, [[], ['']])).to.equal(3);
+    expect(get({ '': { '': 3 } }, [[], ['']])).to.equal(3);
   });
 
   it('Should return `undefined` when `object` is nullish', () => {
