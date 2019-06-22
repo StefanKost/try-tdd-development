@@ -43,6 +43,18 @@ describe('Get helper', () => {
     expect(get({ '': { '': 3 } }, [[], ['']])).to.equal(3);
   });
 
+  it('Should convert types', () => {
+    expect(get({ true: 3 }, true)).to.equal(3);
+    expect(get({ false: 3 }, false)).to.equal(3);
+    expect(get({ 54: 3 }, 54)).to.equal(3);
+    expect(get({ 54: 3 }, '54')).to.equal(3);
+    expect(get({ null: 3 }, null)).to.equal(3);
+  });
+
+  it('Should handle first `.` like empty key', () => {
+    expect(get({ '': { user: 'First Name' } }, '.user')).to.equal('First Name');
+  });
+
   it('Should return `undefined` when `object` is nullish', () => {
     const params = ['constructor', ['constructor']]
     params.forEach((path) => {

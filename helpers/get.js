@@ -11,9 +11,6 @@ const reIsPlainProp = /^\w*$/;
  * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
  */
 function isKey(value, object) {
-  if (Array.isArray(value)) {
-    return false;
-  }
   const type = typeof value;
   if (type === 'number' || type === 'symbol' || type === 'boolean' || value == null) {
     return true;
@@ -56,7 +53,7 @@ const toString = (value) => {
     return value.map(toString) + '';
   }
   return value + '';
-}
+};
 
 /**
  * Casts `value` to a path array if it's not one.
@@ -85,7 +82,7 @@ function toKey(value) {
     return value;
   }
 
-  return value + '';
+  return `${value}`;
 }
 
 
@@ -101,7 +98,7 @@ const baseGet = (object, path) => {
     index += 1;
   }
   return (index && index === length) ? newObject : undefined;
-}
+};
 
 /**
  * Gets the value at `path` of `object`. If the resolved value is
