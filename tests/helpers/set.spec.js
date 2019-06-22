@@ -28,7 +28,7 @@ describe('Set handler', () => {
       const actual = set(object, path, value);
 
       expect(actual).to.equal(object);
-      expect(object).to.have.deep.property('a.b', value);
+      expect(object).to.have.deep.equal({ a: { b: value } });
     });
   });
 
@@ -96,5 +96,29 @@ describe('Set handler', () => {
 
     set(object, ['1a', '2b', '3c'], value);
     expect(object).to.deep.equal({ '1a': { '2b': { '3c': value } } });
+  });
+
+  it('Should not modify not object', () => {
+    const number = 5;
+    const value = 2;
+
+    set(number, ['a.b'], value);
+    expect(number).to.equal(5);
+  });
+
+  it('Set array', () => {
+    const array = [1, 3];
+    const value = 2;
+
+    set(array, ['2'], value);
+    expect(array).to.deep.equal([1, 3, 2]);
+  });
+
+  it('Should not use nullable values', () => {
+    const nullable = null;
+    const value = 2;
+
+    set(nullable, ['2'], value);
+    expect(nullable).to.equal(null);
   });
 });
