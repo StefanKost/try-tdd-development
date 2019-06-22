@@ -1,3 +1,5 @@
 module.exports = (value) => {
-  console.log(value);
+  if (value == null) { return ''; }
+
+  return null;
 };
