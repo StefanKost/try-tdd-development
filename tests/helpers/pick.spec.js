@@ -39,4 +39,9 @@ describe('pick helper', () => {
     expect(pick(null, 'valueOf')).to.deep.equal({});
     expect(pick(undefined, 'valueOf')).to.deep.equal({});
   });
+
+  it('Should return an empty object not found', () => {
+    const object = { a: 1, b: { c: 2, d: 3 } };
+    expect(pick(object, 'b.e')).to.deep.equal({});
+  });
 });
